@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CategoryPermissionSeeder extends Seeder
+class ProductPermissionSeeder extends Seeder
 {
 	/**
 	 * Run the database seeds.
@@ -17,11 +17,11 @@ class CategoryPermissionSeeder extends Seeder
 	public function run()
 	{
 		$permissions = [
-			PermissionEnum::GET_ALL_CATEGORIES,
-			PermissionEnum::GET_SELECTED_CATEGORY,
-			PermissionEnum::ADD_CATEGORY,
-			PermissionEnum::UPDATE_CATEGORY,
-			PermissionEnum::DELETE_CATEGORY,
+			PermissionEnum::GET_ALL_PRODUCTS,
+			PermissionEnum::GET_SELECTED_PRODUCT,
+			PermissionEnum::ADD_PRODUCT,
+			PermissionEnum::UPDATE_PRODUCT,
+			PermissionEnum::DELETE_PRODUCT,
 		];
 
 		$data = [];
