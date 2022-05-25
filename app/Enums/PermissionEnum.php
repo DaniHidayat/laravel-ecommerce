@@ -12,6 +12,13 @@ class PermissionEnum
 	const DELETE_CATEGORY = 'Delete category';
 	// const DESTROY_CATEGORY = 'Delete category permanently';
 
+	// Users
+	const GET_ALL_USERS = 'Get all users';
+	const GET_SELECTED_USER = 'Get selected user';
+	const ADD_USER = 'Add user';
+	const UPDATE_USER = 'Update user';
+	const DELETE_USER = 'Delete user';
+
 	// Products
 	const GET_ALL_PRODUCTS = 'Get all products';
 	const GET_SELECTED_PRODUCT = 'Get selected product';
