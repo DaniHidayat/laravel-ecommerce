@@ -9,7 +9,7 @@ trait ApiResponseTrait
 	/**
 	 * Json response with http status 200 OK
 	 */
-	public function okResponse($message = 'OK')
+	public function okResponse(string $message = 'OK')
 	{
 		return response()->json([
 			'message' => $message
