@@ -31,7 +31,6 @@ class CategoryControllerTest extends Base
 
 		$response
 			->assertOk()
-			->assertJsonCount(1, 'data')
 			->assertJsonStructure([
 				'data' => [
 					0 => [
@@ -98,7 +97,7 @@ class CategoryControllerTest extends Base
 			->assertOk()
 			->assertJson(['message' => __('messages.data_deleted')]);
 
-		$this->assertDatabaseCount(Category::class, 0);
+		$this->assertDatabaseMissing(Category::class, ['id' => $this->category->id]);
 	}
 
 	/** @test */

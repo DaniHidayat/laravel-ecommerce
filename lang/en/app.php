@@ -1,6 +1,12 @@
 <?php
 
 return [
+	// Carts
+	'carts' => [
+		'product_id' => 'Product',
+		'quantity' => 'Quantity'
+	],
+
 	// Categories
 	'categories' => [
 		'name' => 'Category Name',

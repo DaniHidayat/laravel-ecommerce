@@ -19,15 +19,10 @@ class Base extends TestCase
 	 */
 	protected function setAuthToken(...$permissions): void
 	{
-		// $this->authenticatedUser = User::factory()->create();
+		$this->authenticatedUser = User::factory()->create();
 
-		// dd($permissions);
-		// Sanctum::actingAs(
-		// 	$this->authenticatedUser,
-		// 	$permissions
-		// );
 		Sanctum::actingAs(
-			User::factory()->create(),
+			$this->authenticatedUser,
 			$permissions
 		);
 	}
