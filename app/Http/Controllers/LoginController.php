@@ -21,7 +21,11 @@ class LoginController extends Controller
 			// Revoke auth token before create the new token
 			$request->user()->tokens()->where('name', 'auth_token')->delete();
 
-			$token = $request->user()->createToken('auth_token', []);
+			// Get all user permissions
+			$permissions = $request->user()->getPermissionNames()->toArray();
+
+			// Give permissions to token
+			$token = $request->user()->createToken('auth_token', $permissions);
 
 			return response()->json([
 				'accessToken' => $token->plainTextToken

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Controllers;
 
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -49,5 +50,30 @@ class LoginControllerTest extends TestCase
 		]);
 
 		$this->assertDatabaseCount('personal_access_tokens', 1);
+	}
+
+	/** @test */
+	public function can_give_permissions_to_auth_token()
+	{
+		$permissions = Permission::factory(3)->create();
+
+		$user = User::factory()->create([
+			'email' => 'user@example.test',
+			'password' => bcrypt('password')
+		]);
+
+		$user->givePermissionTo($permissions);
+
+		$this->postJson('/api/login', [
+			'email' => $user->email,
+			'password' => 'password'
+		]);
+
+		/** @var array */
+		$tokenAbilities = $user->tokens->last()->abilities;
+
+		$this->assertTrue(in_array($permissions[0]->name, $tokenAbilities));
+		$this->assertTrue(in_array($permissions[1]->name, $tokenAbilities));
+		$this->assertTrue(in_array($permissions[2]->name, $tokenAbilities));
 	}
 }
