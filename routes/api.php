@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
@@ -28,6 +29,8 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('categories', CategoryController::class);
 
 	Route::apiResource('customers', CustomerController::class)->except('store');
+
+	Route::apiResource('invitations', InvitationController::class);
 
 	Route::apiResource('users', UserController::class)->except('store');
 

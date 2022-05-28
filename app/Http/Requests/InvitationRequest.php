@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class InvitationRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class UserRequest extends FormRequest
 	 */
 	public function rules()
 	{
-		return [
+		$rules = [
 			'name' => 'required|max:255',
 			'email' => 'required|email|unique:users,email',
 			'permissions' => 'present|array',
@@ -31,6 +31,13 @@ class UserRequest extends FormRequest
 			'roles' => 'present|array',
 			'roles.*' => 'exists:roles,name',
 		];
+
+		// If method is not POST
+		if (!request()->isMethod('POST')) {
+			unset($rules['email']);
+		}
+
+		return $rules;
 	}
 
 	/**

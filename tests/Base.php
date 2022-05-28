@@ -23,7 +23,7 @@ class Base extends TestCase
 
 		Sanctum::actingAs(
 			$this->authenticatedUser,
-			$permissions
+			$permissions,
 		);
 	}
 }

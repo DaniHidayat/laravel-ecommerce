@@ -30,6 +30,13 @@ class PermissionSeeder extends Seeder
 			PermissionEnum::UPDATE_CUSTOMER,
 			PermissionEnum::DELETE_CUSTOMER,
 
+			// Invitations
+			PermissionEnum::GET_ALL_INVITATIONS,
+			PermissionEnum::GET_SELECTED_INVITATION,
+			PermissionEnum::ADD_INVITATION,
+			PermissionEnum::UPDATE_INVITATION,
+			PermissionEnum::DELETE_INVITATION,
+
 			// Products
 			PermissionEnum::GET_ALL_PRODUCTS,
 			PermissionEnum::GET_SELECTED_PRODUCT,

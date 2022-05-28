@@ -18,6 +18,13 @@ class PermissionEnum
 	const UPDATE_CUSTOMER = 'Update customer';
 	const DELETE_CUSTOMER = 'Delete customer';
 
+	// Invitations
+	const GET_ALL_INVITATIONS = 'Get all invitations';
+	const GET_SELECTED_INVITATION = 'Get selected invitation';
+	const ADD_INVITATION = 'Add invitation';
+	const UPDATE_INVITATION = 'Update invitation';
+	const DELETE_INVITATION = 'Delete invitation';
+
 	// Users
 	const GET_ALL_USERS = 'Get all users';
 	const GET_SELECTED_USER = 'Get selected user';
