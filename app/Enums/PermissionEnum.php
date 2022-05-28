@@ -31,4 +31,11 @@ class PermissionEnum
 	const ADD_PRODUCT = 'Add product';
 	const UPDATE_PRODUCT = 'Update product';
 	const DELETE_PRODUCT = 'Delete product';
+
+	// Roles
+	const GET_ALL_ROLES = 'Get all roles';
+	const GET_SELECTED_ROLE = 'Get selected role';
+	const ADD_ROLE = 'Add role';
+	const UPDATE_ROLE = 'Update role';
+	const DELETE_ROLE = 'Delete role';
 }
