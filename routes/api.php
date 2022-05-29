@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcceptInvitationController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
@@ -17,6 +18,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', LoginController::class);
 
+Route::get('invitations/{email}/{token}', [AcceptInvitationController::class, 'checkInvitation']);
+Route::post('invitations/{email}/{token}', [AcceptInvitationController::class, 'acceptInvitation']);
+
+/**
+ * Sanctum Auth
+ */
 Route::middleware('auth:sanctum')->group(function () {
 
 	Route::controller(CartController::class)->group(function () {
