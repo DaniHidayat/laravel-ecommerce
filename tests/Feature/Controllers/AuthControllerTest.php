@@ -2,17 +2,44 @@
 
 namespace Tests\Feature\Controllers;
 
+use App\Enums\RoleEnum;
 use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class LoginControllerTest extends TestCase
+class AuthControllerTest extends TestCase
 {
 	use RefreshDatabase;
 
 	/** @test */
-	public function can_login()
+	public function guest_can_register()
+	{
+		Role::factory()->create(['name' => RoleEnum::CUSTOMER]);
+
+		$data = [
+			'name' => 'Kakak Dewa',
+			'email' => 'guest@mail.test',
+			'password' => 'password',
+			'password_confirmation' => 'password',
+		];
+
+		$response = $this->post('/api/register', $data);
+
+		$response
+			->assertStatus(200)
+			->assertJson(['message' => 'OK']);
+
+		$savedCustomer = User::where('email', 'guest@mail.test')->first();
+
+		$this->assertNotNull($savedCustomer);
+
+		$this->assertTrue($savedCustomer->hasRole(RoleEnum::CUSTOMER));
+	}
+
+	/** @test */
+	public function user_can_login()
 	{
 		$user = User::factory()->create([
 			'email' => 'user@example.test',
