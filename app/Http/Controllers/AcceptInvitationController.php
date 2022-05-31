@@ -31,7 +31,7 @@ class AcceptInvitationController extends Controller
 	}
 
 	/**
-	 * Create accounts for invited users
+	 * Create account for invited user
 	 */
 	public function acceptInvitation(Request $request, string $email, string $unencryptedToken)
 	{

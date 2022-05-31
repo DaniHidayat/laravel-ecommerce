@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', LoginController::class);
+Route::post('/register', RegisterController::class);
 
 Route::get('invitations/{email}/{token}', [AcceptInvitationController::class, 'checkInvitation']);
 Route::post('invitations/{email}/{token}', [AcceptInvitationController::class, 'acceptInvitation']);
