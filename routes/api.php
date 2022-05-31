@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -39,6 +40,8 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('customers', CustomerController::class)->except('store');
 
 	Route::apiResource('invitations', InvitationController::class);
+
+	Route::get('me', ProfileController::class);
 
 	Route::apiResource('users', UserController::class)->except('store');
 
