@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\CreateProductAction;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
@@ -27,15 +28,9 @@ class ProductController extends Controller
 	 * Add image
 	 * Store a newly created resource in storage.
 	 */
-	public function store(ProductRequest $request)
+	public function store(ProductRequest $request, CreateProductAction $createProductAction)
 	{
-		Product::create([
-			'category_id' => $request->category_id,
-			'description' => $request->description,
-			'image' => $request->image,
-			'name' => $request->name,
-			'price' => $request->price,
-		]);
+		$createProductAction->execute($request->validated());
 
 		return $this->okResponse(__('messages.data_saved'));
 	}

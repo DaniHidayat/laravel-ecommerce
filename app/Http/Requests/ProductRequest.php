@@ -29,6 +29,9 @@ class ProductRequest extends FormRequest
 			'image' => 'present|nullable|file|mimes:png,jpg,jpeg',
 			'name' => 'required|max:255',
 			'price' => 'required|numeric',
+			'specifications' => 'required|array',
+			'specifications.*.name' => 'required|max:50',
+			'specifications.*.value' => 'required',
 		];
 	}
 
@@ -45,6 +48,9 @@ class ProductRequest extends FormRequest
 			'image' => __('app.products.image'),
 			'name' => __('app.products.name'),
 			'price' => __('app.products.price'),
+			'specifications' => 'Specifications',
+			'specifications.*.name' => 'Specification Name',
+			'specifications.*.value' => 'Specification Value',
 		];
 	}
 }

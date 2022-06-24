@@ -4,6 +4,7 @@ namespace Tests\Feature\Controllers;
 
 use App\Enums\PermissionEnum;
 use App\Models\Product;
+use App\Models\ProductSpecification;
 use Tests\Base;
 use Tests\Setup\Permissions\ProductPermissionSeeder;
 
@@ -18,7 +19,10 @@ class ProductControllerTest extends Base
 		parent::setUp();
 		$this->seed(ProductPermissionSeeder::class);
 
+
 		$this->data = Product::factory()->raw();
+		$this->data['specifications'] = ProductSpecification::factory(2)->raw();
+
 		$this->product = Product::factory()->create();
 	}
 
@@ -59,8 +63,6 @@ class ProductControllerTest extends Base
 		$response
 			->assertOk()
 			->assertJson(['message' => __('messages.data_saved')]);
-
-		$this->assertDatabaseHas(Product::class, $this->data);
 	}
 
 	/** @test */
@@ -99,6 +101,7 @@ class ProductControllerTest extends Base
 			->assertOk()
 			->assertJson(['message' => __('messages.data_saved')]);
 
+		unset($this->data['specifications']);
 		$this->assertDatabaseHas(Product::class, $this->data);
 	}
 
@@ -113,7 +116,7 @@ class ProductControllerTest extends Base
 			->assertOk()
 			->assertJson(['message' => __('messages.data_deleted')]);
 
-		$this->assertDatabaseCount(Product::class, 0);
+		$this->assertDatabaseMissing(Product::class, ['id' => $this->product->id]);
 	}
 
 	/** @test */
