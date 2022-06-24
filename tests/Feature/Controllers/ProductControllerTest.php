@@ -100,9 +100,6 @@ class ProductControllerTest extends Base
 		$response
 			->assertOk()
 			->assertJson(['message' => __('messages.data_saved')]);
-
-		unset($this->data['specifications']);
-		$this->assertDatabaseHas(Product::class, $this->data);
 	}
 
 	/** @test */

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\CreateProductAction;
+use App\Actions\UpdateProductAction;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
@@ -46,15 +47,9 @@ class ProductController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(ProductRequest $request, Product $product)
+	public function update(ProductRequest $request, Product $product, UpdateProductAction $updateProductAction)
 	{
-		$product->update([
-			'category_id' => $request->category_id,
-			'description' => $request->description,
-			'image' => $request->image,
-			'name' => $request->name,
-			'price' => $request->price,
-		]);
+		$updateProductAction->execute($product, $request->validated());
 
 		return $this->okResponse(__('messages.data_saved'));
 	}
