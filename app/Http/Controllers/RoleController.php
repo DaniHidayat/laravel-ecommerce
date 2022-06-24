@@ -19,7 +19,7 @@ class RoleController extends Controller
 	 */
 	public function index()
 	{
-		$roles = Role::query()->with('permissions')->get();
+		$roles = Role::query()->with('permissions')->paginate();
 
 		return RoleResource::collection($roles);
 	}

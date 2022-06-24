@@ -19,7 +19,7 @@ class CustomerController extends Controller
 	 */
 	public function index()
 	{
-		$customers = User::with(['permissions', 'roles'])->get();
+		$customers = User::with(['permissions', 'roles'])->paginate();
 
 		return CustomerResource::collection($customers);
 	}

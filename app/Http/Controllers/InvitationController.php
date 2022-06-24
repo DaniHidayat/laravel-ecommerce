@@ -23,7 +23,7 @@ class InvitationController extends Controller
 	 */
 	public function index()
 	{
-		$invitations = Invitation::all();
+		$invitations = Invitation::query()->paginate();
 
 		return InvitationResource::collection($invitations);
 	}
